@@ -1,0 +1,129 @@
+.login-div{
+    height:calc(100vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../image/background.jpg");
+    background-size: 100% 100%;
+}
+
+.login-form{
+    width: 400px;
+    height: 300px;
+    text-align: center;
+    background: #999999;
+    opacity: 0.8;
+}
+
+.login-input{
+    width: 300px!important;
+}
+
+.login-head{
+    padding: 30px 5px 30px 0;
+}
+
+.body{
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.tab{
+    height: calc(100vh - 60px);
+}
+
+.head{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.menu-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(0,0,0,0.08);
+}
+
+.bread{
+    margin: 0 10px;
+    color: #999;
+}
+
+.iframe{
+    height: calc(100vh - 100px);
+    width: 100%;
+    border: none;
+}
+
+.search-div{
+    margin-top: 0;
+    align-items: center;
+    height: 40px;
+    display: flex;
+}
+
+.search-input{
+    height: 30px;
+    display: inline;
+    width: 300px!important;
+    margin-right: 20px;
+}
+
+.search-inline{
+    width: 500px;
+    display: inline-flex;
+    align-items: center;
+    float: left;
+}
+
+.layui-input-form{
+    width: 500px;
+}
+
+.layui-inline-form{
+    width: 500px!important;
+}
+
+.layui-textarea-form{
+    height: 100px!important;
+}
+
+.btn-div{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-save{
+    width: 80px;
+    border-radius: 100px;
+}
+
+.border{
+    border: 1px solid #eee;
+}
+
+.layerIframe{
+    padding: 20px 50px 0 20px;
+}
+
+.layui-table-page{
+    text-align: left;
+}
+
+.layui-select-tips{
+    text-align: left;
+}
+
+.layui-form-select dl dd{
+    text-align: left;
+}
+
+.username{
+    cursor: pointer;
+    font-size: 18px;
+    color: #009688;
+}
