@@ -15,7 +15,7 @@ ems-admin-layui是ems-admin前端的layui版本，后台为基本SpringBoot开�
 [![GitHub stars](https://img.shields.io/github/stars/ems-admin/ems-admin-layui.svg?style=social&label=Stars)](https://github.com/ems-admin/ems-admin-layui)
 [![GitHub forks](https://img.shields.io/github/forks/ems-admin/ems-admin-layui.svg?style=social&label=Fork)](https://github.com/ems-admin/ems-admin-layui)
 
-[ems-admin-layui演示站点](https://vue-layui.facebook47.cn/)
+[ems-admin-layui演示站点](https://ems-admin-layui.facebook47.cn/)
 
  - **<font color=red>提示：首次启动会报错，再次启动就正常了！首次启动会报错，再次启动就正常了！首次启动会报错，再次启动就正常了！</font>**
 
@@ -53,7 +53,7 @@ ems-admin-layui是ems-admin前端的layui版本，后台为基本SpringBoot开�
 - ems-admin-layui技术群: `211296170`
 
 
-- [issues 问题反馈](https://github.com/ems-admin/ems-admin-boot/issues)
+- [issues 问题反馈](https://github.com/ems-admin/ems-admin-layui/issues)
 
 
 - [更新日志](CHANGELOG.md)
