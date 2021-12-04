@@ -23,6 +23,7 @@
 import {nextTick, onMounted, reactive} from "vue";
 import {errorMsg, infoMsg, successMsg} from "../../utils/layerMsg";
 import {chargeUserStatus, delUserById, getUserList} from "../../api/user/user";
+import store from "../../store";
 
 export default {
   name: "Index",
@@ -68,9 +69,13 @@ export default {
             } },
           { field: 'option', title: '操作', width: 180, align: 'center', templet: function (data) {
               const status = data.enabled === false ? '启用' : '停用'
-              return '<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="status">'+status+'</a>' +
-                  '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>' +
-                  '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>'
+              if (data.roles.indexOf('ROLE_ADMIN') === -1){
+                return '<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="status">'+status+'</a>' +
+                    '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>' +
+                    '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>'
+              } else {
+                return ''
+              }
             } },
         ]],
         data: data ? data : []

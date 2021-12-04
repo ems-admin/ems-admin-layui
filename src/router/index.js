@@ -2,7 +2,6 @@ import router from './routers'
 import store from "../store";
 import {queryAllMenu} from "../api/menu/menu";
 import {errorMsg} from "../utils/layerMsg";
-import routers from "./routers";
 
 //  定义白名单路由
 const whiteList = ['/login']
@@ -13,7 +12,7 @@ router.beforeEach((to, from, next) => {
   if (store.state.token) {
     //  在用户手动切换到根路由的时候，强制返回，避免路由跳出当前主页面
     if (to.path === '/'){
-      routers.go(-1)
+      router.go(-1)
     }
     // 如果登录就直接跳转到主页
     if (to.path === '/login') {
@@ -22,7 +21,7 @@ router.beforeEach((to, from, next) => {
       //  判断是否已拉取过了用户菜单
       if (!store.state.isLoadMenu) {
         loadMenus(next, to)
-      //  如果拉取过
+        //  如果拉取过
       } else {
         //  判断请求路由是否存在于系统路由中,如果不存在
         if (!hashRoute(to)){
@@ -34,7 +33,7 @@ router.beforeEach((to, from, next) => {
           } else {
             next({path: '/404'})
           }
-        //  如果存在
+          //  如果存在
         } else {
           //  直接访问
           next()
@@ -45,7 +44,7 @@ router.beforeEach((to, from, next) => {
     // 在免登录白名单，直接进入
     if (whiteList.indexOf(to.path) !== -1) {
       next()
-    // 否则全部重定向到登录页
+      // 否则全部重定向到登录页
     } else {
       next(`/login`)
     }

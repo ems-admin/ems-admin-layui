@@ -23,7 +23,7 @@
 import {getMenuTable} from "@/api/menu/menu";
 import {errorMsg} from "@/utils/layerMsg";
 import {nextTick, onMounted, reactive} from "vue";
-import {infoMsg, successMsg} from "../../utils/layerMsg";
+import {infoMsg, successMsg} from "@/utils/layerMsg";
 import {deleteMenu} from "@/api/menu/menu";
 
 export default {
@@ -117,7 +117,7 @@ export default {
 
     //  删除菜单
     function delMenu(id){
-      window.layer.confirm('确认删除用户？',{
+      window.layer.confirm('确认删除菜单？',{
         btn: ['确认', '取消']
       }, function () {
         deleteMenu({id: id}).then(res => {

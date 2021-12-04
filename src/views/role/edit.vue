@@ -11,7 +11,7 @@
     <div class="layui-form-item">
       <div class="layui-form-label">角色代码</div>
       <div class="layui-input-block">
-        <input class="layui-input layui-input-form" lay-verify="required" name="roleCode" placeholder="请输入角色代码">
+        <input class="layui-input layui-input-form" lay-verify="required" name="roleCode" placeholder="请输入角色代码" :disabled="state.isAdmin">
       </div>
     </div>
     <div class="layui-form-item">
@@ -39,7 +39,7 @@ export default {
   name: "edit",
   setup(props, context){
     const state = reactive({
-
+      isAdmin: false
     })
 
     //  将getParentParams绑定对window上，方便父页面调用传值
@@ -47,7 +47,9 @@ export default {
 
     //  获取父页面传过来的值
     function getParentParams(param){
+      state.isAdmin = false
       if (param.id){
+        state.isAdmin = param.roleCode === 'ROLE_ADMIN'
         nextTick(() => {
           const form = window.layui.form
           form.val('form', param)

@@ -23,7 +23,7 @@
 import {nextTick, onMounted, reactive} from "vue";
 import {getRoleTable} from "@/api/role/role";
 import {errorMsg} from "@/utils/layerMsg";
-import {infoMsg, successMsg} from "../../utils/layerMsg";
+import {infoMsg, successMsg, waringMsg} from "../../utils/layerMsg";
 import {deleteRole} from "../../api/role/role";
 
 export default {
@@ -81,7 +81,7 @@ export default {
         } else if (obj.event === 'del'){
           delRole(obj.data.id)
         } else if (obj.event === 'authorize'){
-          authorize(obj.data.id)
+          authorize(obj.data.id, obj.data.roleCode)
         }
       })
     }
@@ -120,7 +120,11 @@ export default {
     }
 
     //  角色授权
-    function authorize(id){
+    function authorize(id, roleCode){
+      if (roleCode === 'ROLE_ADMIN'){
+        waringMsg('超级管理员拥有所有菜单权限，无需授权')
+        return false
+      }
       window.layer.open({
         type: 2,
         title: '角色授权',
