@@ -64,6 +64,7 @@ export default {
           isPidData: true,
           idName: 'id',
           pidName: 'parentId',
+          childName: 'children',
         },
         cols: [[
           { field: 'id', title: 'ID', hide: true},

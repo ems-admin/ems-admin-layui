@@ -29,7 +29,7 @@ export function queryAllMenu(){
  */
 export function getMenuTable(param){
     return request({
-        url: '/sys/menu/table/tree',
+        url: '/sys/menu/table',
         method: 'get',
         param
     })
