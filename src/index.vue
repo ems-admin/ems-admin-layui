@@ -224,4 +224,29 @@ export default {
     margin: 0;
   }
 
+  .layui-tab-title{
+    background-color: #FAFAFA;
+    width: calc(100vw - 215px);
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+  }
+
+  :deep(.layui-tab-title li){
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+  }
+
+  :deep(.layui-this:after){
+    height: 30px;
+  }
+
+  :deep(.layui-tab-title .layui-this) {
+    height: 30px;
+    color: #ffffff;
+    background-color: #5FB878;
+  }
+
 </style>

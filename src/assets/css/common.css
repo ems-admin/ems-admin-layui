@@ -37,7 +37,7 @@
     height: 50px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
 }
 
 .menu-head{
@@ -54,7 +54,7 @@
 }
 
 .iframe{
-    height: calc(100vh - 100px);
+    height: calc(100vh - 125px);
     width: 100%;
     border: none;
 }
