@@ -60,8 +60,8 @@ export const loadMenus = (next, to) => {
   queryAllMenu().then(res => {
     if (res.success){
       if (res.data.length > 0){
-        //  将用户菜单缓存到store中
-        store.dispatch('routesActions', res.data)
+        //  将用户菜单缓存到store中,去掉按钮
+        store.dispatch('routesActions', res.data.filter(item => item.type !== '3'))
         //  将拉取状态缓存到store中
         store.dispatch('loadMenuAction', true)
         next({ ...to, replace: true })
@@ -89,6 +89,7 @@ export function addRoute(){
   let routes = store.state.routers
   if (routes && routes.length > 0){
     routes.forEach(item => {
+      console.info(item)
       router.addRoute({
         path: item.path,
         name: item.name,

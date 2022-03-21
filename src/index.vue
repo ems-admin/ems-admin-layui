@@ -7,9 +7,9 @@
         <img src="../src/assets/image/ems.png" style="height: 40px;">
         <span>EMS-ADMIN</span>
       </div>
-      <li v-for="(menu, index) in state.menuList" :key="index" class="layui-nav-item" style="text-align: left;">
+      <li v-for="(menu, index) in state.menuList" :key="index" class="layui-nav-item" style="text-align: left;" :class="{'layui-this': menu.name === '首页'}">
         <a href="javascript:" :id="menu.id" :type="menu.type">{{menu.name}}</a>
-        <dl v-if="menu.children.length > 0" class="layui-nav-child layui-nav-child-c">
+        <dl v-if="menu.children && menu.children.length > 0" class="layui-nav-child layui-nav-child-c">
           <dd v-for="(child, index) in menu.children" :key="index">
             <a href="javascript:" :id="child.id" :type="child.type" :rel="child.path">{{child.name}}</a>
           </dd>
@@ -59,10 +59,13 @@ export default {
     const state = reactive({
       menuList: [],
       username: store.state.user.nickName,
-      breadcrumb: [{path: '/home', name: '首页'}],
-      ids: [0],
+      breadcrumb: [],
+      ids: [],
       breads: [],
-      element: null
+      element: null,
+      class: {
+        'layui-this': false
+      }
     })
 
     onMounted(() => {
@@ -73,16 +76,6 @@ export default {
     function getHome(){
       nextTick(() => {
         state.element = window.layui.element
-        const $ = window.layui.jquery
-        state.element.tabAdd('tabs', {
-          title: '首页',
-          content: createIframe('/home'),
-          id: 0
-        })
-        //  切换至首页
-        state.element.tabChange('tabs', 0)
-        //  隐藏首页关闭按钮
-        $(".layui-tab ul").children('li').first().children('.layui-tab-close').css("display",'none');
         getMenuTree()
       })
     }
@@ -92,9 +85,11 @@ export default {
       getMenuList().then(res => {
         if (res.success){
           state.menuList = res.data
+          const homeMenu = state.menuList.filter((menu) => menu.name === '首页')[0]
+          openHome(homeMenu)
           nextTick(() => {
             // const element = window.layui.element
-            // //  初始化element模板，非常重要，不加不显示菜单
+            //  初始化element模板，非常重要，不加不显示菜单
             state.element.init()
             //  监听事件
             state.element.on('nav(menu)', function (elem) {
@@ -106,6 +101,7 @@ export default {
 
               //  新增tab
               if (state.ids.indexOf(id) === -1){
+                console.info(state.ids)
                 if (type === '2'){
                   state.element.tabAdd('tabs', {
                     title: title,
@@ -146,6 +142,24 @@ export default {
       })
     }
 
+    //  加载完菜单后，默认打开首页
+    function openHome(homeMenu){
+      nextTick(() => {
+        const $ = window.layui.jquery
+        //  加载首页
+        state.element.tabAdd('tabs', {
+          title: homeMenu.name,
+          content: createIframe(homeMenu.path),
+          id: homeMenu.id
+        })
+        state.ids.push(homeMenu.id + '')
+        //  切换至首页
+        state.element.tabChange('tabs', homeMenu.id)
+        //  隐藏首页关闭按钮
+        $(".layui-tab ul").children('li').first().children('.layui-tab-close').css("display",'none');
+      })
+    }
+
     //  每个tab就是一个iframe
     function createIframe(url){
       return '<iframe src="'+url+'" class="iframe" frameborder="0" scrolling="no"></iframe>'
@@ -173,7 +187,7 @@ export default {
     //  通过🍞屑返回首页
     function toHome(path){
       if (path === "/home"){
-        state.element.tabChange('tabs', 0)
+        state.element.tabChange('tabs', 33)
         getTitle(0)
       }
     }

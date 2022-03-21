@@ -1,12 +1,12 @@
 import request from "@/utils/request";
 
 /**
- * 查询菜单列表
+ * 查询菜单列表(左侧菜单树专用)
  * @returns {AxiosPromise}
  */
 export function getMenuList(){
     return request({
-        url: 'sys/menu/tree',
+        url: 'sys/menu/tree/left',
         method: 'get'
     })
 }

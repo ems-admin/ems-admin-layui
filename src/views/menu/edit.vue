@@ -20,12 +20,24 @@
           </div>
         </div>
       </div>
-      <div class="layui-form-item" pane>
-        <div class="layui-form-label">菜单类型</div>
-        <div class="layui-input-block" style="text-align: left;">
-          <input type="radio" lay-filter="type" name="type" value="1" title="菜单" checked>
-          <input type="radio" lay-filter="type" name="type" value="2" title="页面">
-          <input type="radio" lay-filter="type" name="type" value="3" title="按钮">
+      <div class="layui-row layui-col-space10">
+        <div class="layui-col-sm6">
+          <div class="layui-form-item" pane>
+            <div class="layui-form-label">菜单类型</div>
+            <div class="layui-input-block" style="text-align: left;">
+              <input type="radio" lay-filter="type" name="type" value="1" title="菜单" checked>
+              <input type="radio" lay-filter="type" name="type" value="2" title="页面">
+              <input type="radio" lay-filter="type" name="type" value="3" title="按钮">
+            </div>
+          </div>
+        </div>
+        <div v-if="state.isBtn" class="layui-col-sm6">
+          <div class="layui-form-item">
+            <div class="layui-form-label">权限标识</div>
+            <div class="layui-input-block">
+              <input class="layui-input" lay-verify="required" name="permission" placeholder="请输入权限标识">
+            </div>
+          </div>
         </div>
       </div>
       <div class="layui-form-item">
@@ -66,6 +78,7 @@ export default {
   setup(props, context){
     const state = reactive({
       isPage: false,
+      isBtn: false,
       parentId: null,
       childObj: null
     })
@@ -82,8 +95,11 @@ export default {
       if (param && param.id){
         nextTick(() => {
           const form = window.layui.form
-          if (param.type === '2' || param.type === '3'){
+          if (param.type === '2'){
             state.isPage = true
+          } else if (param.type === '3'){
+            state.isPage = true
+            state.isBtn = true
           }
           //  延时1毫秒,不然path会来不及更新
           setTimeout(() => {
@@ -148,10 +164,15 @@ export default {
       form.render('radio')
       //  监听radio
       form.on('radio(type)', function (obj) {
-        if (obj.value === '2' || obj.value === '3'){
+        if (obj.value === '2'){
           state.isPage = true
+          state.isBtn = false
+        } else if (obj.value === '3'){
+          state.isPage = true
+          state.isBtn = true
         } else {
           state.isPage = false
+          state.isBtn = false
         }
       })
       //  提交

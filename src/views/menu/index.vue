@@ -4,7 +4,7 @@
     <div class="layui-row" style="width: 100%;">
       <div class="layui-col-sm8">
         <div class="search-inline">
-          <input type="text" class="layui-input search-input" v-model="state.blurry" placeholder="请输入菜单名称">
+          <input type="text" class="layui-input search-input" size="small" v-model="state.blurry" placeholder="请输入菜单名称">
           <button type="button" class="layui-btn layui-btn-sm" @click="getTableTree">查询</button>
         </div>
       </div>
@@ -81,6 +81,7 @@ export default {
                 return '按钮'
               }
             }},
+          { field: 'permission', title: '权限标识', width: 120,},
           { field: 'sort', title: '排序', width: 120,},
           { field: 'option', title: '操作', align: 'center', width:120, templet: function (d) {
               return '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>' +
